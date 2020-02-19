@@ -1,13 +1,22 @@
 package com.simpletech.jpasecurity.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.simpletech.jpasecurity.bean.UserDetail;
+import com.simpletech.jpasecurity.repository.UserRepository;
 
 @Controller
 public class HomeController {
 	
+	@Autowired
+	UserRepository userRepo;
+	
 	@GetMapping("/")
 	public String base() {
+		UserDetail userDetailObj = userRepo.findByUsername("user");
+		System.out.println(userDetailObj);
 		return "index";
 	}
 	
